@@ -1,0 +1,14 @@
+---
+
+- hosts: all
+  become: yes
+  gather_facts: yes
+
+  tasks:
+
+    - name: staging
+      import_task: foobar.yaml
+      register: foobar
+      tags: ["foo","bar"]
+
+    - debug: msg="{{ foobar.stdout }}"

@@ -1,0 +1,29 @@
+# encoding: utf-8
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+require 'yaml'
+
+current_dir    = File.dirname(File.expand_path(__FILE__))
+configs        = YAML.load_file("#{current_dir}/config.yaml")
+vagrant_config = configs['configs'][configs['configs']['select']]
+
+Vagrant.configure('2') do |config|
+
+    config.vm.network 'public_network', ip: vagrant_config['public_ip']
+
+    config.vm.provider :libvirt do |libvirt|
+      libvirt.cpus = vagrant_config['cpu_int']
+      libvirt.memory = vagrant_config['memory_int']
+      libvirt.nested = true
+      libvirt.driver = vagrant_config['defualt_driver_string']
+      libvirt.network :public_network, :dev => "vagrant_config['ethernet_string']", :mode => "bridge"
+      libvirt.network :private_network, :type => "dhcp"
+    end
+    # Shell provisioning
+    # Replace later with ansible provisioner
+    config.vm.provision "shell", inline: <<-SHELL
+      echo "hello_world"
+
+    SHELL
+  end
