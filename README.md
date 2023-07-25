@@ -32,13 +32,9 @@ Cool bells:
 
   - Currently using hardcoded inventory in awx
 
-|![](.Resources\static_host.PNG)|
-|:--:|
-| **Static Inventory** |
+![static host](.Resources\static_host.PNG)
 
-|![](.Resources\ansible_awx_ping.PNG)|
-|:--:|
-| **Connectivity Check** |
+[connectivity_check](.Resources\ansible_awx_ping.PNG)
 
 
 ## Packer build
