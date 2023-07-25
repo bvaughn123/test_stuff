@@ -32,9 +32,9 @@ Cool bells:
 
   - Currently using hardcoded inventory in awx
 
-![static host](.Resources\static_host.PNG)
+![static host](.Resources/static_host.PNG)
 
-[connectivity_check](.Resources\ansible_awx_ping.PNG)
+[connectivity_check](.Resources/ansible_awx_ping.PNG)
 
 
 ## Packer build
@@ -52,11 +52,11 @@ Packer Build w/ post vagrant provisioner to build box
 
 - [ ] Create a j2 template to generate the Yaml vars for the vagrantfile
 
-  ![vagrant vars](.Resources\vagrant_vars.PNG)
+  ![vagrant vars](.Resources/vagrant_vars.PNG)
 
 - [ ] Create a j2 file to for the ansible provisioner (below has a shell provisioner) to select playbook  
 
-  ![VagrantFile](.Resources\vagrantfile.PNG)
+  ![VagrantFile](.Resources/vagrantfile.PNG)
  
 
 ## Build Nested vm
