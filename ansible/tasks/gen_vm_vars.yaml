@@ -1,0 +1,13 @@
+- include_vars:
+    file: vars/vagrant_vm_vars.yaml
+    name: vagrant_vm_vars
+
+- set_fact:
+    output_file: "{{playbook_dir}}/config.yaml"
+
+- name: create config.yml
+  template:
+    src: templates/config.yaml.j2
+    dest: "{{ output_file }}"
+  vars:
+    vagrant_vm_vars: "{{ vagrant_vm_vars }}"

@@ -1,0 +1,7 @@
+---
+
+vm_selection: test1
+vagrant_file_vars:
+  - ["test1","mode","base_box","public_ip","cpu_int","memory_int","default_driver_string","ethernet_string"]
+  - ["test2","mode","base_box","public_ip","cpu_int","memory_int","default_driver_string","ethernet_string"]
+  - ["test3","mode","base_box","public_ip","cpu_int","memory_int","default_driver_string","ethernet_string"]

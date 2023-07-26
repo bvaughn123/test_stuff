@@ -4,26 +4,35 @@
 
 require 'yaml'
 
+# Load Dynamic Vars from Yaml File
 current_dir    = File.dirname(File.expand_path(__FILE__))
 configs        = YAML.load_file("#{current_dir}/config.yaml")
 vagrant_config = configs['configs'][configs['configs']['select']]
 
 Vagrant.configure('2') do |config|
 
+    mode_type == vagrant_config['mode']
+    box_name == vagrant_config['base_box']
+    if mode_type == ENV["deploy"]
+      box_type == ENV["box_name"]
+    end
+    
     config.vm.network 'public_network', ip: vagrant_config['public_ip']
-
+  
     config.vm.provider :libvirt do |libvirt|
       libvirt.cpus = vagrant_config['cpu_int']
       libvirt.memory = vagrant_config['memory_int']
+      # Vm on Vm action
       libvirt.nested = true
       libvirt.driver = vagrant_config['defualt_driver_string']
       libvirt.network :public_network, :dev => "vagrant_config['ethernet_string']", :mode => "bridge"
       libvirt.network :private_network, :type => "dhcp"
     end
-    # Shell provisioning
-    # Replace later with ansible provisioner
-    config.vm.provision "shell", inline: <<-SHELL
-      echo "hello_world"
 
+    # Shell provisioning
+    config.vm.provision "shell", inline: <<-SHELL
+      echo "Shell Provisioner"
     SHELL
   end
+
+end
