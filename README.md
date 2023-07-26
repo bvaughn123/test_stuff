@@ -36,8 +36,7 @@ Re-use and "agnosticize" a template vagrant file.
     > config.yaml  
 
 - [ ] Create a Provision and Deploy variable in template  
-
-    - [todo] Test the ruby if logic...  
+- [ ] [todo] Test the ruby if logic...  
     - Provision variable would be for utilization by packers post provision vagrant plugin
     > This would create the intial box to be reutilized by the proceeding vagrant builds
 
