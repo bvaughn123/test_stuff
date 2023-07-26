@@ -43,20 +43,33 @@ Re-use and "agnosticize" a template vagrant file.
     - Deploy key would dictate the config.vm.box = "$var.BOXNAME"  
     > Imported from a key in the config.yaml file, essentially vm "flavor" ( from packer post-provisioner or the repackaged boxes )
 
-- [ ] Base.box optionally repackage to create staged boxes? 
-    - *** May solve the backlog task of ovf creation, but will require a qemu-img convert task on the box.img file in the box package ***    
+- [ ] Base.box optionally repackage to create staged boxes????
+    - *** May solve the a backlog task of ovf creation, but will require a qemu-img convert task on the box.img file in the box package ***     
 
 ### Template Creation
 
 Create the Vars to be imported into the "agnosticized" vagrant file.  
 > [config.yaml.j2 ](ansible\templates\config.yaml.j2)
 
-- [ ] Add lists
+- [x] Add lists to be used by the config.yaml creation....
+      vars/vagrant_vm_vars.yaml
+      ```yaml
+         ---
+
+        vm_selection: test1
+        vagrant_file_vars:
+          - ["test1","mode","base_box","public_ip","cpu_int","memory_int","default_driver_string","ethernet_string"]
+          - ["test2","mode","base_box","public_ip","cpu_int","memory_int","default_driver_string","ethernet_string"]
+          - ["test3","mode","base_box","public_ip","cpu_int","memory_int","default_driver_string","ethernet_string"]
+      ```
+
+- [ } Need to create the ansible provisioner portion for the vagrantfile.  Possibly use a key to dictate role, playbook, or whatever that will be tested.
 
 
-### Outputted Config.yaml 
+### config.yaml example
 
-Example 
+Example with notes and possible todos.
+
 ```yaml
 ---
 configs:

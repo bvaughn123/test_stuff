@@ -9,4 +9,3 @@
       import_tasks: tasks/gen_vm_vars.yaml
       tags: [ gen_config.yaml ]
     
-    - name: 
