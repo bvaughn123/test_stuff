@@ -25,7 +25,7 @@ Packer Build w/ post vagrant provisioner to build box
     - [todo] Need to come up with logic for choosing the pkr.hcl file...
 
 - [ ] Need to ensure task for vagrant install libvirt plugin is done
-     - Custom Plugin [todo] inprogress...  
+     - Custom Plugin [todo] **inprogress** 
      [Custom Plugin Readme](ansible/plugins/Vagrant_Plugin.md)
 
 ## Dynamic Vagrantfile

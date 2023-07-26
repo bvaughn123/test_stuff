@@ -5,5 +5,8 @@
   gather_facts: yes
 
   tasks:
-    - name: foobar
-      foo: "bar"
+    - name: Build config.yaml file
+      import_tasks: tasks/gen_vm_vars.yaml
+      tags: [ gen_config.yaml ]
+    
+    - name: 
