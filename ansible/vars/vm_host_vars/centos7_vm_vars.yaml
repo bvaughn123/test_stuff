@@ -1,0 +1,12 @@
+
+config_file: "centos7-kickstart.cfg"
+cpu: 2
+disk_size: 40000
+headless: "true"
+iso_checksum: "sha256:07b94e6b1a0b0260b94c83d6bb76b26bf7a310dc78d7a9c7432809fb9bc6194a"
+iso_url: "http://ftp.belnet.be/mirror/ftp.centos.org/7/isos/x86_64/CentOS-7-x86_64-Minimal-2009.iso"
+distro: "centos"
+ram: 2048
+ssh_password: "testtest" #would like to test the awx surveys with this...or possibly just use the ssh pass fact, which would already be from in awx
+ssh_username: "root"
+version: 7

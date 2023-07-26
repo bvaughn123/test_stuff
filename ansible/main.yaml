@@ -5,7 +5,15 @@
   gather_facts: yes
 
   tasks:
+
     - name: Build config.yaml file
       import_tasks: tasks/gen_vm_vars.yaml
       tags: [ gen_config.yaml ]
     
+    - name: Packer Build and Create Base Box
+      import_tasks: 
+        - tasks/packer/create_auto_vars.yaml
+        - tasks/packer/build.yaml
+      tags: [ packer_init ]
+      when: PROVISION_BOX == True
+

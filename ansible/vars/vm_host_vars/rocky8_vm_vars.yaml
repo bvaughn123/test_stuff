@@ -1,0 +1,13 @@
+---
+
+config_file: "rocky8-kickstart.cfg"
+cpu: 2
+disk_size: 60000
+headless: True
+distro: rocky
+ram: 2048
+ssh_password: "testtest" #Would like to test the awx survey capability on this
+ssh_username: "root"
+version: 8
+iso_checksum: "sha256:0081f8b969d0cef426530f6d618b962c7a01e71eb12a40581a83241f22dfdc25"
+iso_url: '["Rocky-8.5-x86_64-dvd1.iso", "https://dl.rockylinux.org/vault/rocky/8.5/isos/x86_64/Rocky-8.5-x86_64-dvd1.iso"]'

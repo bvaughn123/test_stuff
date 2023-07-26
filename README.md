@@ -30,7 +30,7 @@ Packer Build w/ post vagrant provisioner to build box
 
 ## Dynamic Vagrantfile
 
-Re-use and "agnosticize" a template vagrant file.
+Re-use and "agnosticize" a template vagrant file. (maybe...)
 
 - [ ] Create a j2 template to generate vars for the vagrantfile
     > config.yaml  
@@ -40,7 +40,7 @@ Re-use and "agnosticize" a template vagrant file.
     - Provision variable would be for utilization by packers post provision vagrant plugin
     > This would create the intial box to be reutilized by the proceeding vagrant builds
 
-    - Deploy key would dictate the config.vm.box = "$var.BOXNAME"  
+    - Deploy key would dictate the config.vm.box = "file://boxes/" + ( box_name || default_box )
     > Imported from a key in the config.yaml file, essentially vm "flavor" ( from packer post-provisioner or the repackaged boxes )
 
 - [ ] Decide vagrantfile Course of Action, Use an agnostic vagrant file w/ ruby logic
