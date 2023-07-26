@@ -36,12 +36,42 @@ Re-use and "agnosticize" a template vagrant file.
     > config.yaml  
 
 - [ ] Create a Provision and Deploy variable in template  
-- [ ] [todo] Test the ruby if logic...  
+
     - Provision variable would be for utilization by packers post provision vagrant plugin
     > This would create the intial box to be reutilized by the proceeding vagrant builds
 
     - Deploy key would dictate the config.vm.box = "$var.BOXNAME"  
     > Imported from a key in the config.yaml file, essentially vm "flavor" ( from packer post-provisioner or the repackaged boxes )
+
+- [ ] Decide vagrantfile Course of Action, Use an agnostic vagrant file w/ ruby logic
+    >  [Stack Overflow example](https://stackoverflow.com/questions/16708917/how-do-i-include-variables-in-my-vagrantfile)
+
+    ```
+        # encoding: utf-8
+        # -*- mode: ruby -*-
+        # vi: set ft=ruby :
+
+        require 'yaml'
+
+        # Load Dynamic Vars from config.ymaml generated file
+        current_dir    = File.dirname(File.expand_path(__FILE__))
+        configs        = YAML.load_file("#{current_dir}/config.yaml")
+        vagrant_config = configs['configs'][configs['configs']['select']]
+
+
+        Vagrant.configure('2') do |config|
+        
+            mode_type == vagrant_config['mode']
+            box_name == vagrant_config['base_box']
+            if mode_type == ENV["deploy"]
+              box_type == ENV["box_name"]
+              config.vm.box = "file://boxes/" + ( box_name || default_box )
+            end
+
+    ```
+
+- [ ] Template out the vagrant file based on the provision or deploy var via ansible task.
+
 
 - [ ] Base.box optionally repackage to create staged boxes????
     **May solve the a backlog task of ovf creation, but will require a qemu-img convert task on the box.img file in the box package**     
