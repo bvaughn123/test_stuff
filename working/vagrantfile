@@ -1,0 +1,36 @@
+# -*- mode: ruby -*-
+
+# vi: set ft=ruby :
+
+# Vagrant configuration for a VM using the KVM provider
+
+
+
+Vagrant.configure("2") do |config|
+
+    config.vm.box = "file://boxes/libvirt-centos7.box"
+    
+    # hardcoded test, replace with the config.yaml and ansible facts (maybe?)
+    config.ssh.username = "root"
+    config.ssh.password = "testtest"
+    
+    config.nfs.functional = false
+    config.nfs.verify_installed = false
+    config.vm.synced_folder ".", "/shared", type: "rsync", nfs: false
+
+    config.vm.provider :libvirt do |libvirt|
+      libvirt.cpus = 2
+      libvirt.memory = 2048
+
+      # Enable nested virtualization
+      libvirt.nested = true
+      libvirt.driver = "qemu" # Default driver
+      libvirt.driver = "kvm" # KVM driver (use if available)
+    end
+
+    # Shell provisioning example (installing packages)
+    config.vm.provision "shell", inline: <<-SHELL
+      echo "hello-world"
+    SHELL
+  end
+

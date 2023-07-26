@@ -1,0 +1,48 @@
+Bringing machine 'default' up with 'libvirt' provider...
+==> default: No version detected for file://boxes/libvirt-centos7.box, using timestamp to watch for modifications. Consider
+==> default: generating a local metadata for the box with a version to allow better handling.
+==> default: See https://www.vagrantup.com/docs/boxes/format#box-metadata for further details.
+==> default: Creating image (snapshot of base box volume).
+==> default: Creating domain with the following settings...
+==> default:  -- Name:              packer-kvm_default
+==> default:  -- Description:       Source: /home/bill/packer-kvm/Vagrantfile
+==> default:  -- Domain type:       kvm
+==> default:  -- Cpus:              2
+==> default:  -- Feature:           acpi
+==> default:  -- Feature:           apic
+==> default:  -- Feature:           pae
+==> default:  -- Clock offset:      utc
+==> default:  -- Memory:            2048M
+==> default:  -- Base box:          file://boxes/libvirt-centos7.box
+==> default:  -- Storage pool:      default
+==> default:  -- Image(vda):        /var/lib/libvirt/images/packer-kvm_default.img, virtio, 40G
+==> default:  -- Disk driver opts:  cache='default'
+==> default:  -- Graphics Type:     vnc
+==> default:  -- Video Type:        cirrus
+==> default:  -- Video VRAM:        16384
+==> default:  -- Video 3D accel:    false
+==> default:  -- Keymap:            en-us
+==> default:  -- TPM Backend:       passthrough
+==> default:  -- INPUT:             type=mouse, bus=ps2
+==> default: Creating shared folders metadata...
+==> default: Starting domain.
+==> default: Domain launching with graphics connection settings...
+==> default:  -- Graphics Port:      5900
+==> default:  -- Graphics IP:        127.0.0.1
+==> default:  -- Graphics Password:  Not defined
+==> default:  -- Graphics Websocket: 5700
+==> default: Waiting for domain to get an IP address...
+==> default: Waiting for machine to boot. This may take a few minutes...
+    default: SSH address: 192.168.121.54:22
+    default: SSH username: ...
+    default: SSH auth method: password
+    default:
+    default: Inserting generated public key within guest...
+    default: Removing insecure key from the guest if it's present...
+    default: Key inserted! Disconnecting and reconnecting using new SSH key...
+==> default: Machine booted and ready!
+==> default: Installing rsync to the VM...
+==> default: Rsyncing folder: /home/bill/packer-kvm/ => /shared
+==> default: Running provisioner: shell...
+    default: Running: inline script
+    default: hello-world
