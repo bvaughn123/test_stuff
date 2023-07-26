@@ -44,7 +44,7 @@ Re-use and "agnosticize" a template vagrant file.
     > Imported from a key in the config.yaml file, essentially vm "flavor" ( from packer post-provisioner or the repackaged boxes )
 
 - [ ] Base.box optionally repackage to create staged boxes????
-    - *** May solve the a backlog task of ovf creation, but will require a qemu-img convert task on the box.img file in the box package ***     
+    **May solve the a backlog task of ovf creation, but will require a qemu-img convert task on the box.img file in the box package**     
 
 ### Template Creation
 
