@@ -1,14 +1,14 @@
 ---
 configs:
   select: "{{ vm_selection }}"
-    {%- for entry in vagrant_file_vars %}
-    {{ '\n' }}
-      {{ entry[0] }}:
-        base_box: "{{ entry[1] }}"
-        cpu: "{{ entry[2] }}"
-        memory: "{{ entry[3] }}"
-        default_driver: "{{ entry[4] }}"
-    {%- if not loop.last %}
-    {%- endif %}
-    {%- endfor %}
+  {%- for entry in vagrant_file_vars %}
+  {{ '\n' }}
+    {{ entry[0] }}:
+      base_box: "{{ entry[1] }}"
+      cpu: "{{ entry[2] }}"
+      memory: "{{ entry[3] }}"
+      default_driver: "{{ entry[4] }}"
+  {%- if not loop.last %}
+  {%- endif %}
+  {%- endfor %}
 
