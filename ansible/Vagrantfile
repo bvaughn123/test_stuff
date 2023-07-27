@@ -19,7 +19,7 @@ Vagrant.configure('2') do |config|
       config.vm.box = "file://boxes/" + ( box_name || default_box )
     end
     
-    config.vm.synced_folder "src/", "srv/vagrant", disable: true
+    config.vm.synced_folder ".", "/vagrant", disable: true
     config.vm.network 'public_network', ip: vagrant_config['public_ip']
   
     config.vm.provider :libvirt do |libvirt|
@@ -28,8 +28,8 @@ Vagrant.configure('2') do |config|
       # Vm on Vm action
       libvirt.nested = true
       libvirt.driver = vagrant_config['default_driver_string']
-      libvirt.network :public_network, :dev => "vagrant_config['ethernet_string']", :mode => "bridge"
-      libvirt.network :private_network, :type => "dhcp"
+      #libvirt.network :public_network, :dev => "vagrant_config['ethernet_string']", :mode => "bridge"
+      #libvirt.network :private_network, :type => "dhcp"
     end
 
     # Shell provisioning

@@ -21,26 +21,29 @@ Thoughts:
 
 Packer Build w/ post vagrant provisioner to build box 
 
-- [ ] Need to create a task to launch the packer build of the base vm.  
-    - [todo] Need to come up with logic for choosing the pkr.hcl file...
+Moving these to seperate part of workflow.
 
-- [ ] Need to ensure task for vagrant install libvirt plugin is done
-     - Custom Plugin [todo] **inprogress** 
-     [Custom Plugin Readme](ansible/plugins/Vagrant_Plugin.md)
+- [x] Need to create a task to launch the packer build of the base vm.  
+    `Going to move externally to segrate workflow tasks` [Make vm test thingys](https://github.com/bvaughn123/mk_vm_test_thingys) 
+- [x] Need to come up with logic for choosing the pkr.hcl file...
+    `Going to move externally to segrate workflow tasks` [Make vm test thingys](https://github.com/bvaughn123/mk_vm_test_thingys) 
+- [x] Need to ensure task for vagrant install libvirt plugin is done
 
 ## Dynamic Vagrantfile
 
 Re-use and "agnosticize" a template vagrant file. (maybe...)
 
-- [ ] Create a j2 template to generate vars for the vagrantfile
+- [x] Create a j2 template to generate vars for the vagrantfile
     > config.yaml  
 
 - [ ] Create a Provision and Deploy variable in template  
 
     - Provision variable would be for utilization by packers post provision vagrant plugin
+    
     > This would create the intial box to be reutilized by the proceeding vagrant builds
 
     - Deploy key would dictate the config.vm.box = "file://boxes/" + ( box_name || default_box )
+   
     > Imported from a key in the config.yaml file, essentially vm "flavor" ( from packer post-provisioner or the repackaged boxes )
 
 - [ ] Decide vagrantfile Course of Action, Use an agnostic vagrant file w/ ruby logic
@@ -93,7 +96,7 @@ Create the Vars to be imported into the "agnosticized" vagrant file.
           - ["test3","mode","base_box","public_ip","cpu_int","memory_int","default_driver_string","ethernet_string"]
       ```
 
-- [ } Need to create the ansible provisioner portion for the vagrantfile.  Possibly use a key to dictate role, playbook, or whatever that will be tested.
+- [ ] Need to create the ansible provisioner portion for the vagrantfile.  Possibly use a key to dictate role, playbook, or whatever that will be tested.
 
 
 ### config.yaml example
