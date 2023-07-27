@@ -1,8 +1,6 @@
-# Creation of this file should be done dynamically
-# either from a list or csv file
-# if list, vagrant_vm_vars.yaml file
-# if csv, would need to generate via a python modules csv and jinja2, by creating a reader and reading in the values
+# config.yaml creation
 
+```
 ---
 configs:
     select: 'test1'
@@ -33,7 +31,15 @@ configs:
       memory_int: 2048
       default_driver_string: "kvm"
       ethernet_string: "ens192"
+```
 
-## Variables to consider
-## Interface... ansible_default_ipv4.interface?
-## ansible user / ssh pass for vagrant user/pass?
+### Variables to consider
+
+- vagrant user/pass
+
+Option 1: `ansible user / ssh pass`
+Option 2: `set as extra vars`
+
+| :important:   | must be consitant across the packer build |
+|---------------|:------------------------|
+
