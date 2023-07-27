@@ -6,6 +6,6 @@ vm_selection: "test1"
 # Name, box_name.box, cpus, memory, driver 
 
 vagrant_file_vars:
-  - ["test1","base_box","cpu","memory","default_driver",]
-  - ["test2","base_box","cpu","memory","default_driver",]
-  - ["test3","base_box","cpu","memory","default_driver",]
+  - ["centos7","centos7.box","2","2048","kvm"]
+  - ["rocky8","rocky8.box","2","2048","kvm"]
+  #- ["test3","base_box","cpu","memory","default_driver",]
