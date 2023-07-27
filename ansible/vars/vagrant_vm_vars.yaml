@@ -1,6 +1,10 @@
 ---
 
-vm_selection: "test1"
+# Default VM Selection
+vm_selection: "test1" 
+
+# Name, box_name.box, cpus, memory, driver 
+
 vagrant_file_vars:
   - ["test1","base_box","cpu","memory","default_driver",]
   - ["test2","base_box","cpu","memory","default_driver",]
