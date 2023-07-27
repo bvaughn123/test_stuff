@@ -7,7 +7,7 @@
   tasks:
 
     - name: Build config.yaml file
-      import_tasks: tasks/gen_vm_vars.yaml
+      import_tasks: tasks/gen_config_file.yaml
       tags: [ gen_config.yaml ]
     
     - name: Packer Build and Create Base Box
