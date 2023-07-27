@@ -1,7 +1,7 @@
 ---
 configs:
   select: "{{ vm_selection }}" #[todo]need better var name description
-    {%- for entry in vagrantfile_vars %}
+    {%- for entry in vagrant_file_vars %}
       {{ entry[0] }}:
         mode: "{{ entry[1] }}"
         base_box: "{{ entry[2] }}"
