@@ -1,13 +1,22 @@
 - include_vars:
     file: vars/vagrant_vm_vars.yaml
-    name: vagrant_vm_vars
 
 - set_fact:
     output_file: "{{playbook_dir}}/config.yaml"
 
-- name: create config.yml
+- name: Check if a config.yaml exists
+  stat: "{{ playbook_dir }}/config.yaml"
+  register: config_exists
+
+- name: create config.yaml
   template:
     src: templates/config.yaml.j2
     dest: "{{ output_file }}"
   vars:
     vagrant_vm_vars: "{{ vagrant_vm_vars }}"
+  register: config_file_created
+  tags: [ "config_yaml_create" ]
+  when: config_exists == 0
+
+
+

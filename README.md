@@ -33,23 +33,13 @@ Moving these to seperate part of workflow.
 
 ## Dynamic Vagrantfile
 
-Re-use and "agnosticize" a template vagrant file. (maybe...)
+Re-use and "agnosticize" things.
 
+- [x] template for vars to be imported from file for vagrantfile.
 - [x] Create a j2 template to generate vars for the vagrantfile
     > config.yaml  
+- [x] Box Selection: config.vm.box = "file://boxes/libvirt-{{box_name}}" based on selection in config.yaml
 
-- [ ] Create a Provision and Deploy variable in template  
-
-    - Provision variable would be for utilization by packers post provision vagrant plugin
-    
-    > This would create the intial box to be reutilized by the proceeding vagrant builds
-
-    - Deploy key would dictate the config.vm.box = "file://boxes/" + ( box_name || default_box )
-   
-    > Imported from a key in the config.yaml file, essentially vm "flavor" ( from packer post-provisioner or the repackaged boxes )
-
-- [ ] Decide vagrantfile Course of Action, Use an agnostic vagrant file w/ ruby logic
-    >  [Stack Overflow example](https://stackoverflow.com/questions/16708917/how-do-i-include-variables-in-my-vagrantfile)
 
     ```
         # encoding: utf-8
@@ -65,20 +55,12 @@ Re-use and "agnosticize" a template vagrant file. (maybe...)
 
 
         Vagrant.configure('2') do |config|
-        
-            mode_type == vagrant_config['mode']
-            box_name == vagrant_config['base_box']
-            if mode_type == ENV["deploy"]
-              box_type == ENV["box_name"]
-              config.vm.box = "file://boxes/" + ( box_name || default_box )
-            end
-
+        base_name = vagrant_config['base_box']
+          config.vm.box = "file://boxes/"+box_name
+            
     ```
 
-- [ ] Template out the vagrant file based on the provision or deploy var via ansible task.
-
-
-- [ ] Base.box optionally repackage to create staged boxes????
+- [ ] Do I create a task to Halt box, package, unzip, and perform a qemu-img -c to convert to ovf?
     **May solve the a backlog task of ovf creation, but will require a qemu-img convert task on the box.img file in the box package**     
 
 ### Template Creation
@@ -86,19 +68,19 @@ Re-use and "agnosticize" a template vagrant file. (maybe...)
 Create the Vars to be imported into the "agnosticized" vagrant file.  
 > [config.yaml.j2 ](ansible\templates\config.yaml.j2)
 
-- [x] Add lists to be used by the config.yaml creation....
-      vars/vagrant_vm_vars.yaml
+- [x] vars/vagrant_vm_vars.yaml
       ```yaml
-         ---
+        ---
 
-        vm_selection: test1
+        # Default VM Selection
+        vm_selection: "test1" 
+        
+        # Name, box_name.box, cpus, memory, driver 
         vagrant_file_vars:
-          - ["test1","mode","base_box","public_ip","cpu_int","memory_int","default_driver_string","ethernet_string"]
-          - ["test2","mode","base_box","public_ip","cpu_int","memory_int","default_driver_string","ethernet_string"]
-          - ["test3","mode","base_box","public_ip","cpu_int","memory_int","default_driver_string","ethernet_string"]
+          - ["centos7","centos7.box","2","2048","default_driver",]
+          - ["rocky8","rocky8.box","2","2048","default_driver",]
+          #- ["test3","base_box","cpu","memory","default_driver",]
       ```
-
-- [ ] Need to create the ansible provisioner portion for the vagrantfile.  Possibly use a key to dictate role, playbook, or whatever that will be tested.
 
 
 ### config.yaml example
@@ -108,42 +90,19 @@ Example with notes and possible todos.
 ```yaml
 ---
 configs:
-    select: 'test1'
-    
+  select: 'test1'
+
     test1:
-      mode: provision  # Vagrantfile for Packers post-provision vagrant plugin
-      base_box: null   # box not yet created
-      public_ip: '192.168.1.11'
+      base_box: "centos7.box"
       cpu_int: 2
       memory_int: 2048
-      ethernet_string: "ens192"  # consider use gathered fact
       default_driver_string: "qemu"
     
     test2:
       mode: deploy
-      base_box: libvirt-centos7
-      public_ip: '192.168.2.22'
-      cpu_int: 2
-      memory_int: 2048
-      default_driver_string: "qemu"
-      ethernet_string: "ens192"
-
-    test3:
-      mode: deploy
-      base_box: libvirt-rocky8
-      public_ip: '192.168.3.33'
+      base_box: "rocky8.box"
       cpu_int: 2
       memory_int: 2048
       default_driver_string: "kvm"
-      ethernet_string: "ens192"
-
-## Variables to consider
-## Interface... ansible_default_ipv4.interface?
-## ansible user / ssh pass for vagrant user/pass?
+      
 ```
-
-
-
-
-
-

@@ -10,28 +10,28 @@ configs:
       base_box: "base_box"
       cpu: "cpu"
       memory: "memory"
-      default_driver: "default_driver"
+      driver: "driver"
 
     test2:
       base_box: "base_box"
       cpu: "cpu"
       memory: "memory"
-      default_driver: "default_driver"
+      driver: "driver"
 
     test3:
       base_box: "base_box"
       cpu: "cpu"
       memory: "memory"
-      default_driver: "default_driver"
+      driver: "driver"
 ```
 
 ### Variables to consider
 
-- vagrant user/pass
+- Task to change root user/pass update needed
 
-Option 1: `ansible user / ssh pass`
+Option 1: `ansible user / ssh pass vars`
 Option 2: `set as extra vars`
 
-| :important:   | must be consitant across the packer build |
+| :important:   | must be consitant across the ks and packer build |
 |---------------|:------------------------|
 

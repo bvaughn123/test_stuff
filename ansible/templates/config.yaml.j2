@@ -7,7 +7,7 @@ configs:
       base_box: "{{ entry[1] }}"
       cpu: "{{ entry[2] }}"
       memory: "{{ entry[3] }}"
-      default_driver: "{{ entry[4] }}"
+      driver: "{{ entry[4] }}"
   {%- if not loop.last %}
   {%- endif %}
   {%- endfor %}
