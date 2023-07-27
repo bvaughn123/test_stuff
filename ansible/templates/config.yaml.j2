@@ -1,19 +1,14 @@
 ---
 configs:
-  select: "{{ vm_selection }}" #[todo]need better var name description
+  select: "{{ vm_selection }}"
     {%- for entry in vagrant_file_vars %}
+    {{ '\n' }}
       {{ entry[0] }}:
-        mode: "{{ entry[1] }}"
-        base_box: "{{ entry[2] }}"
-        public_ip: "{{ entry[3] }}"
-        cpu_int: "{{ entry[4] }}"
-        memory_int: "{{ entry[5] }}"
-        ethernet_string: "{{ entry[6] }}"
-        default_driver_string: "{{ entry[7] }}"
+        base_box: "{{ entry[1] }}"
+        cpu: "{{ entry[2] }}"
+        memory: "{{ entry[3] }}"
+        default_driver: "{{ entry[4] }}"
     {%- if not loop.last %}
     {%- endif %}
     {%- endfor %}
 
-## Variables to consider
-## Interface... ansible_default_ipv4.interface?
-## ansible user / ssh pass for vagrant user/pass?
