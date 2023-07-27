@@ -3,17 +3,19 @@
 Thoughts:
 
 1. **Make the Setup VM**  
-   - Part of the libvirt_packer_ansible playbook  
-   [Pakr Vagr Libvirt](https://github.com/bvaughn123/Libvirt-Vagrant-Packer)  
+  - Libvirt_packer_ansible playbook  
+    [Pakr Vagr Libvirt](https://github.com/bvaughn123/Libvirt-Vagrant-Packer)  
    
 2. **Create a testing workflow**
-   - Part of the libvirt_packer_ansible playbook  
-   [Pakr Vagr Libvirt](https://github.com/bvaughn123/Libvirt-Vagrant-Packer)  
+  - Example in Libvirt_packer_ansible playbook  
+    [Pakr Vagr Libvirt](https://github.com/bvaughn123/Libvirt-Vagrant-Packer)  
      
-3. **Packer Build w/ vagrant post provision**  
+3. **Packer Build w/ vagrant post provision**
+  - Provision and use vagrant post processor to create base.box 
+    [make test vm thingys](https://github.com/bvaughn123/mk_vm_test_thingys)
 
 4. **Create Dynamic vagrantfile*** for use with vagrant box   
-
+  
 5. **Build Nested vm using libvirt and vagrant box**  
 
 
