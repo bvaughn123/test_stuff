@@ -76,7 +76,7 @@ Create the Vars to be imported into the "agnosticized" vagrant file.
         vm_selection: "test1" 
         
         # Name, box_name.box, cpus, memory, driver 
-        vagrant_file_vars:
+        VARS_VAGRANT_SYSTEM_SETTINGS:
           - ["centos7","centos7.box","2","2048","default_driver",]
           - ["rocky8","rocky8.box","2","2048","default_driver",]
           #- ["test3","base_box","cpu","memory","default_driver",]

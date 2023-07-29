@@ -1,1 +1,5 @@
 ---
+
+#VM_SELECTION: "{{ VM_SELECTION }}"
+VM_SELECTION: "centos7"
+#VM_SELECTION: "rocky8"
