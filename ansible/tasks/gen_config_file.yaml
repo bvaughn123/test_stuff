@@ -5,7 +5,8 @@
     output_file: "{{playbook_dir}}/config.yaml"
 
 - name: Check if a config.yaml exists
-  stat: "{{ playbook_dir }}/config.yaml"
+  stat: 
+    path: "{{ playbook_dir }}/config.yaml"
   register: config_exists
 
 - name: create config.yaml
