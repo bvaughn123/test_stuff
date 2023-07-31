@@ -13,6 +13,7 @@ VM_SELECTION: "centos7"
 UPDATE_VAGRANT_PASSWORD: "testtest1"
 
 
+REMOTE_USER: "bill"
 
 # Vm Name, Box name, cpus, ram, driver
 VAGRANT_VM_SETTINGS:

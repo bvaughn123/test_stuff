@@ -1,0 +1,12 @@
+- name: Copy Vagrant File to Boxes
+  copy:
+    src: Vagrantfile
+    dest: "/home/{{ REMOTE_USER }}/vagrant/Vagrantfile"
+    owner: "{{ REMOTE_USER }}"
+    group: "{{ REMOTE_USER }}"
+    mode: '0644'
+
+- name: Test Custom Vagrant module
+  vagrant: 
+    command: up
+
