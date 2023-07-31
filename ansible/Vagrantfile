@@ -8,7 +8,7 @@ require 'yaml'
 current_dir    = File.dirname(File.expand_path(__FILE__))
 configs        = YAML.load_file("#{current_dir}/config.yaml")
 vagrant_config = configs['configs'][configs['configs']['select']]
-box_name == vagrant_config['base_box']
+box_name       = vagrant_config['base_box']
 
 Vagrant.configure('2') do |config|
     config.vm.box = "file://boxes/libvirt-"+( box_name )
