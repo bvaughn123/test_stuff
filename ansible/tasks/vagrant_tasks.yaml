@@ -6,8 +6,11 @@
     group: "{{ REMOTE_USER }}"
     mode: '0644'
 
-- name: Test Custom Vagrant module
-  vagrant: 
-    command: up
-    path: "/home/{{ REMOTE_USER }}/vagrant/"
+- name: Test Vagrant up command
+  shell: | 
+    set VAGRANT_LOG=info
+    vagrant up --debug &> vagrant.log
+  args:
+    chdir: "/home/{{REMOTE_USER}}"/vagrant"
+    
 
