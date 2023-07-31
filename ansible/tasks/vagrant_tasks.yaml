@@ -1,6 +1,6 @@
 - name: Copy Vagrant File to Boxes
   copy:
-    src: Vagrantfile
+    src: "{{ playbook_dir}}/Vagrantfile"
     dest: "/home/{{ REMOTE_USER }}/vagrant/Vagrantfile"
     owner: "{{ REMOTE_USER }}"
     group: "{{ REMOTE_USER }}"
