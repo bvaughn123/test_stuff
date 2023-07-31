@@ -9,7 +9,7 @@
 - name: Test Vagrant up command
   shell: | 
     export VAGRANT_LOG=info
-    vagrant up --debug 
+    vagrant up
   args:
     chdir: "/home/{{REMOTE_USER}}/vagrant"
   become: yes
