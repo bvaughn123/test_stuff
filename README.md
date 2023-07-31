@@ -6,8 +6,12 @@ Goals:
   - Libvirt_packer_ansible playbook  
     [Pakr Vagr Libvirt](https://github.com/bvaughn123/Libvirt-Vagrant-Packer)  
   
-2. **Create a testing workflow**
-  - Example in Libvirt_packer_ansible playbook  
+2. **Create a testing workflow** 
+  - Example below only shows stage 1 of 3.  
+  Workflow approvals required after each stage completion.  
+  Does not require starting from workflow stage 1, and proceeding workflows  
+  can be executed as long as the required files and dependencies exist.  
+    
     [Pakr Vagr Libvirt](https://github.com/bvaughn123/Libvirt-Vagrant-Packer)  
     
     > Synch proj., exec play, request for approval -> condition based action.
@@ -25,6 +29,7 @@ Goals:
 
 4. **Create Dynamic vagrantfile*** with selection conditional for vagrant box,   
   enabling vagrant up, down, halt, and stuffs.  
+
   [Template Readme](ansible/templates/config.yaml.example.md)
 - [ ] Todo: learn stuffs, and fix the vagrant module thingy...
 
