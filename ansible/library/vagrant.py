@@ -34,7 +34,7 @@ def run_module():
     except subprocess.CalledProcessError as e:
         module.fail_json(msg='Vagrant ' + module.params['command'] + ' failed', **result)
 
-        if module.params['provision] == 'true':
+        if module.params['provision'] == 'true':
             if module.params['output_box_name']:
                 subprocess.check_call(['vagrant ', module.params['command'], '--provision'])
             else:
