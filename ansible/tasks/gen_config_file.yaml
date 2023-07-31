@@ -17,7 +17,7 @@
     vagrant_vm_vars: "{{ vagrant_vm_vars }}"
   register: config_file_created
   tags: [ "config_yaml_create" ]
-  when: config_exists.stat.exists if False
+  when: config_exists.stat.exists == False
 
 
 
