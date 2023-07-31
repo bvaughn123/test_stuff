@@ -12,5 +12,7 @@
     vagrant up --debug 
   args:
     chdir: "/home/{{REMOTE_USER}}/vagrant"
+  become: yes
+  become_user: "{{ REMOTE_USER }}"
 
 
