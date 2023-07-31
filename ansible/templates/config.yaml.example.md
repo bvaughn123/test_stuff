@@ -4,34 +4,22 @@
 
 ---
 configs:
-  select: "test1"
+  select: "centos7"
 
-    test1:
-      base_box: "base_box"
-      cpu: "cpu"
-      memory: "memory"
-      driver: "driver"
+    centos7:
+      base_box: "centos7.box"
+      cpu: "2"
+      memory: "2048"
+      driver: "qemu"
 
-    test2:
-      base_box: "base_box"
-      cpu: "cpu"
-      memory: "memory"
-      driver: "driver"
+    rocky8:
+      base_box: "rocky8.box"
+      cpu: "2"
+      memory: "2048"
+      driver: "qemu"
 
-    test3:
-      base_box: "base_box"
-      cpu: "cpu"
-      memory: "memory"
-      driver: "driver"
-```
 
 ### Variables to consider
 
-- Task to change root user/pass update needed
 
-Option 1: `ansible user / ssh pass vars`
-Option 2: `set as extra vars`
-
-| :important:   | must be consitant across the ks and packer build |
-|---------------|:------------------------|
 
