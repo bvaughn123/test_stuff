@@ -31,9 +31,9 @@ def run_module():
         elif module.params['command'] == 'up':
             subprocess.check_call(['vagrant', module.params['up']])
         result['changed'] = True
-        result['message'] = 'Vagrant ' + module.params['command'] + ' executed successfully'
+        result['message'] = 'Vagrant' + module.params['command'] + ' executed successfully'
     except subprocess.CalledProcessError as e:
-        module.fail_json(msg='Vagrant ' + module.params['command'] + ' failed', **result)
+        module.fail_json(msg='Vagrant' + module.params['command'] + ' failed', **result)
 
     if module.params['command']:
         result['changed'] = True
