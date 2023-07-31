@@ -34,17 +34,6 @@ def run_module():
     except subprocess.CalledProcessError as e:
         module.fail_json(msg='Vagrant ' + module.params['command'] + ' failed', **result)
 
-        if module.params['provision'] == 'true':
-            if module.params['output_box_name']:
-                subprocess.check_call(['vagrant ', module.params['command'], '--provision'])
-            else:
-                module.fail_json(msg='Should be ran with up command', **result)
-        result['changed'] = True
-        result['message'] = 'Vagrant' + module.params['command'] + ' executed successfully'
-    except subprocess.CalledProcessError as e:
-        module.fail_json(msg='Vagrant ' + module.params['command'] + ' failed', **result)
-
-
     if module.params['command']:
         result['changed'] = True
     module.exit_json(**result)
