@@ -11,6 +11,6 @@
     set VAGRANT_LOG=info
     vagrant up --debug &> vagrant.log
   args:
-    chdir: "/home/{{REMOTE_USER}}"/vagrant"
-    
+    chdir: "/home/{{REMOTE_USER}}/vagrant"
+
 
