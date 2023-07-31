@@ -5,7 +5,14 @@ VM_SELECTION: "centos7"
 #VM_SELECTION: "rocky8"
 
 # OVERWRITE_CONFIG_IF_EXISTS: False
-UPDATE_VAGRANT_PASSWORD: "{{ UPDATE_VAGRANT_PASSWORD }}"
+
+# update password with awx custom encrypted creds and vagrant ssh command
+# UPDATE_VAGRANT_PASSWORD: "{{ UPDATE_VAGRANT_PASSWORD }}"
+
+# testing
+UPDATE_VAGRANT_PASSWORD: "testtest1"
+
+
 
 # Vm Name, Box name, cpus, ram, driver
 VAGRANT_VM_SETTINGS:
