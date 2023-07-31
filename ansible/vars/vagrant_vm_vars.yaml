@@ -5,7 +5,9 @@ vm_selection: "{{ VM_SELECTION }}"
 
 # Name, box_name.box, cpus, memory, driver 
 
-VARS_VAGRANT_SYSTEM_SETTINGS:
-  - ["centos7","centos7.box","2","2048","qemu" ]
-  - ["rocky8","rocky8.box","2","2048","qemu" ]
-  #- ["test3","base_box","cpu","memory","defau:lt_driver",]
+VARS_VAGRANT_SYSTEM_SETTINGS: "{{ VAGRANT_VM_SETTINGS }}"
+
+# VARS_VAGRANT_SYSTEM_SETTINGS:
+#   - ["centos7","centos7.box","2","2048","qemu" ]
+#   - ["rocky8","rocky8.box","2","2048","qemu" ]
+#   #- ["test3","base_box","cpu","memory","defau:lt_driver",]

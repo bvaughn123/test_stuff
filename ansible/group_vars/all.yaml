@@ -1,5 +1,18 @@
 ---
 
+#--------------------#
+# What VM to Spin up #
+#--------------------#
 #VM_SELECTION: "{{ VM_SELECTION }}"
 VM_SELECTION: "centos7"
 #VM_SELECTION: "rocky8"
+
+# Overwrite Config File 
+OVERWRITE_CONFIG_IF_EXISTS: False
+
+# Vm Name, Box name, cpus, ram, driver
+VAGRANT_VM_SETTINGS:
+  - ["centos7","centos7.box","2","2048","qemu" ]
+  - ["rocky8","rocky8.box","2","2048","qemu" ]
+
+
