@@ -15,8 +15,8 @@ Vagrant.configure('2') do |config|
     config.ssh.username = "root"
     config.ssh.password = "testtest"
     config.vm.provider :libvirt do |libvirt|
-      libvirt.cpus = vagrant_config['cpu_int']
-      libvirt.memory = vagrant_config['memory_int']
+      libvirt.cpus = vagrant_config['cpu']
+      libvirt.memory = vagrant_config['memory']
       libvirt.nested = true
       libvirt.driver = "qemu" # Default 1
       libvirt.driver = "kvm"  # Default 2 
