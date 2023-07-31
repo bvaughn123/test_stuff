@@ -10,9 +10,8 @@ configs        = YAML.load_file("#{current_dir}/config.yaml")
 vagrant_config = configs['configs'][configs['configs']['select']]
 
 Vagrant.configure('2') do |config|
-
     box_name == vagrant_config['base_box']
-    config.vm.box = "file://boxes/"+( box_name )
+    config.vm.box = "file://boxes/libvirt-"+( box_name )
     config.vm.synced_folder ".", "/vagrant", disable: true
     config.vm.provider :libvirt do |libvirt|
       libvirt.cpus = vagrant_config['cpu_int']
