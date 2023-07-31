@@ -8,8 +8,8 @@
 
 - name: Test Vagrant up command
   shell: | 
-    set VAGRANT_LOG=info
-    vagrant up --debug &> vagrant.log
+    export VAGRANT_LOG=info
+    vagrant up --debug 
   args:
     chdir: "/home/{{REMOTE_USER}}/vagrant"
 
