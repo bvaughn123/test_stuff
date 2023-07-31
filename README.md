@@ -1,18 +1,25 @@
 # Test Stuff
 
-Thoughts:
+Goals:
 
 1. **Make the Setup VM**  
   - Libvirt_packer_ansible playbook  
     [Pakr Vagr Libvirt](https://github.com/bvaughn123/Libvirt-Vagrant-Packer)  
-   
+  
 2. **Create a testing workflow**
   - Example in Libvirt_packer_ansible playbook  
     [Pakr Vagr Libvirt](https://github.com/bvaughn123/Libvirt-Vagrant-Packer)  
-     
+    
+    > Synch proj., exec play, request for approval -> condition based action.
+
+(![Setup VM Workflow](.Resources/SetupVmWorkflow.png))
+(![Approval to begin step 3.](Approval.png))
+
 3. **Packer Build w/ vagrant post provision**
   - Provision and use vagrant post processor to create base.box 
     [make test vm thingys](https://github.com/bvaughn123/mk_vm_test_thingys)
+
+(![Build and Export Base Box])[.Resources/Build_Box.png]
 
 4. **Create Dynamic vagrantfile*** for use with vagrant box   
   
@@ -82,10 +89,7 @@ Create the Vars to be imported into the "agnosticized" vagrant file.
           #- ["test3","base_box","cpu","memory","default_driver",]
       ```
 
-
 ### config.yaml example
-
-Example with notes and possible todos.
 
 ```yaml
 ---
@@ -106,3 +110,11 @@ configs:
       default_driver_string: "kvm"
       
 ```
+
+### Updating the Default Vagrant Password
+
+Multiple options exist.  As this PoC is using the AWX workflow to execute; will default to utilize
+protected credentials on the AWX Controller.
+
+![AWX New Credential Type](.Resources/new_credential_type.png)
+[AWX Documentation](https://docs.ansible.com/ansible-tower/latest/html/userguide/credential_types.htmlhttps://docs.ansible.com/ansible-tower/latest/html/userguide/credential_types.html)
