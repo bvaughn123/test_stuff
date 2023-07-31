@@ -11,5 +11,5 @@
       tags: [ gen_config.yaml ]
 
     - name: Vagrant Tasks
-      import_tasks: tasks/vagrang_tasks.yaml
+      import_tasks: tasks/vagrant_tasks.yaml
       tags: [ vagrant_tasks ]
