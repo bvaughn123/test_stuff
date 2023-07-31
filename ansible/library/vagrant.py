@@ -28,9 +28,8 @@ def run_module():
                 subprocess.check_call(['vagrant', module.params['command'], '--output', module.params['output_box_name']], cwd=module.params['path'])
             else:
                 module.fail_json(msg='output_box_name is required for package command', **result)
-        else:
+        elif module.params['command'] == 'up':
             subprocess.check_call(['vagrant', module.params['command']], cwd=module.params['path'])
-
         result['changed'] = True
         result['message'] = 'Vagrant command ' + module.params['command'] + ' executed successfully'
     except subprocess.CalledProcessError as e:
