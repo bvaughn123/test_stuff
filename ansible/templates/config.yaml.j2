@@ -3,11 +3,11 @@ configs:
   select: "{{ vm_selection }}"
   {%- for entry in VARS_VAGRANT_SYSTEM_SETTINGS %}
   {{ '\n' }}
-    {{ entry[0] }}:
-      base_box: "{{ entry[1] }}"
-      cpu: "{{ entry[2] }}"
-      memory: "{{ entry[3] }}"
-      driver: "{{ entry[4] }}"
+  {{ entry[0] }}:
+    base_box: "{{ entry[1] }}"
+    cpu: "{{ entry[2] }}"
+    memory: "{{ entry[3] }}"
+    driver: "{{ entry[4] }}"
   {%- if not loop.last %}
   {%- endif %}
   {%- endfor %}
