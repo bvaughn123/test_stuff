@@ -19,7 +19,7 @@ Goals:
   - Provision and use vagrant post processor to create base.box 
     [make test vm thingys](https://github.com/bvaughn123/mk_vm_test_thingys)
 
-(![Build and Export Base Box](.Resources/Build_Box.png))
+(![Build and Export Base Box](.Resources/Build_box.png))
 4. **Create Dynamic vagrantfile*** for use with vagrant box   
   
 5. **Build Nested vm using libvirt and vagrant box**  
