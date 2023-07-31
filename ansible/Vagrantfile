@@ -28,5 +28,7 @@ Vagrant.configure('2') do |config|
       echo "Shell Provisioner"
     SHELL
 
+    end
+
   end
 end
