@@ -118,3 +118,17 @@ protected credentials on the AWX Controller.
 
 ![AWX New Credential Type](.Resources/new_credential_type.png)
 [AWX Documentation](https://docs.ansible.com/ansible-tower/latest/html/userguide/credential_types.htmlhttps://docs.ansible.com/ansible-tower/latest/html/userguide/credential_types.html)
+
+
+### Notes 31July
+
+- [ ] Vagrant Custom Plugin not working, need to troubleshoot and understand the subprocess.check_call function mo betta
+
+- [ ] Possible issue with the permission on the vagrant plugin file, need to ensure workflow task that installs libvirt is done as `"{{ REMOTE_USER }}"`.  Temp fix is `vagrant plugin expunge --reinstall`
+
+- [ ] Going to attempt change via encrypted awx and `vagrant ssh -c "echo {{pass}} | passwd root --stdin`  Need to see if this will cause log entry, or if need to export to env Var and ref that.
+
+- [ ] Need to check become_user on tasks to ensure permissions are correct.
+
+- [ ] Vagrantfile/j2 keys and vars.
+
