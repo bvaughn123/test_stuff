@@ -12,19 +12,26 @@ Goals:
     
     > Synch proj., exec play, request for approval -> condition based action.
 
-(![Setup VM Workflow](.Resources/SetupVmWorkflow.png))
-(![Approval to begin step 3.](.Resources/Approval.png))
+![Setup VM Workflow](.Resources/SetupVmWorkflow.png)  
+
+![Approval to begin step 3.](.Resources/Approval.png)  
 
 3. **Packer Build w/ vagrant post provision**
   - Provision and use vagrant post processor to create base.box   
     [make test vm thingys](https://github.com/bvaughn123/mk_vm_test_thingys)  
 
+![Build and Export Base Box](.Resources/Build_box.png)  
 
-(![Build and Export Base Box](.Resources/Build_box.png))  
 
-4. **Create Dynamic vagrantfile*** for use with vagrant box   
-  
+4. **Create Dynamic vagrantfile*** with selection conditional for vagrant box,   
+  enabling vagrant up, down, halt, and stuffs.  
+  [Template Readme](ansible/templates/config.yaml.example.md)
+- [ ] Todo: learn stuffs, and fix the vagrant module thingy...
+
 5. **Build Nested vm using libvirt and vagrant box**  
+- [ ] Todo: Add template for provisioners afterline
+
+- [ ] Todo: Implement the encrypted source_creds, creds thing in AWX.
 
 
 ## AWX Jobs
