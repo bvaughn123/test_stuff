@@ -34,7 +34,7 @@
   when: screenshot_dir_check.stat.exists =! True
 
 - name: Test Screenshot
-  command: "vagrant camera {{ VM_SELECTION }}-Dev-Test-VM --save /home/{{ REMOTE_USER }}/screenshots/
+  command: "vagrant camera {{ VM_SELECTION }}-Dev-Test-VM --save /home/{{ REMOTE_USER }}/screenshots/"
 
 
 ### insert vagrant halt/repackage/destroy and custom provision tasks [todo]
