@@ -24,9 +24,10 @@ Vagrant.configure('2') do |config|
       libvirt.cpus = vagrant_config['cpu']
       libvirt.memory = vagrant_config['memory']
       libvirt.nested = true
+      libvirt.driver = vagrant_config['driver'] # import var and use if available
       libvirt.driver = "qemu" # Default 1
       libvirt.driver = "kvm"  # Default 2 
-      libvirt.driver = vagrant_config['driver'] # import var and use if available
+      
     end
 
     ### PROVISIONERS ###
