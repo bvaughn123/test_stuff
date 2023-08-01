@@ -18,7 +18,7 @@ Vagrant.configure('2') do |config|
     config.nfs.functional = false
     config.nfs.verify_installed = false
     config.vm.synced_folder ".", "/shared", type: "rsync", nfs: false
-    config.vm.define (box_name)+"-Dev-Test-VM"
+    config.vm.define "Dev-Test-VM-"(box_name)
     
     config.vm.provider :libvirt do |libvirt|
       libvirt.cpus = vagrant_config['cpu']
