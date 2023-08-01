@@ -13,6 +13,7 @@
 
 - name: Test Vagrant up command
   shell: | 
+    vagrant plugin expunge --reinstall
     export VAGRANT_LOG=info
     vagrant up
   args:
