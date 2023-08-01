@@ -14,7 +14,7 @@ Goals:
     
     [Pakr Vagr Libvirt](https://github.com/bvaughn123/Libvirt-Vagrant-Packer)  
     
-    > Synch proj., exec play, request for approval -> condition based action.
+    > Synch proj., exec play, request for approval -> condition based action.  
 
 ![Setup VM Workflow](.Resources/SetupVmWorkflow.png)  
 
@@ -30,75 +30,86 @@ Goals:
 4. **Create Dynamic vagrantfile*** with selection conditional for vagrant box,   
   enabling vagrant up, down, halt, and stuffs.  
 
-  [Template Readme](ansible/templates/config.yaml.example.md)
-- [ ] Todo: learn stuffs, and fix the vagrant module thingy...
+  [Template Readme](ansible/templates/config.yaml.example.md)  
+
+- [ ] Todo: learn stuffs, and fix the vagrant module thingy...   
 
 5. **Build Nested vm using libvirt and vagrant box**  
-- [ ] Todo: Add template for provisioners afterline
 
-- [ ] Todo: Implement the encrypted source_creds, creds thing in AWX.
+- [ ] Todo: Add template or additonal tasks with appropriate to dynamically launch  
+      additional tasks / playbooks with vagrant provisioner.  
+    - Created marker for afterline task in vagrant file.  
 
+- [ ] Todo: Implement the encrypted source_creds, creds thing in AWX.  
 
-## AWX Jobs
+## AWX Jobs  
 
-Using AWX Workflow templates to synch repositories, launch jobs, and kick off Next Stage Workflows.
+Using AWX Workflow templates to synch repositories, launch jobs, and kick off Next Stage Workflows.  
 
-Personal reasons I like it, is it helps provide visual context.
+Personal reasons I like AWX is the organic synchronization of projects, creds storage, and others, but most  
+importantly - visual context.  
 
-(![AWX Jobs](.Resources/templates.png))
+![AWX Jobs](.Resources/templates.png)
 
-## Packer build
+## Packer build  
 
-Packer Build w/ post vagrant provisioner to build box 
+Packer Build w/ post vagrant provisioner to build box   
 
-Moving these to seperate part of workflow.
+Moving these to seperate workflow.  
 
-- [x] Need to create a task to launch the packer build of the base vm.  
-    `Going to move externally to segrate workflow tasks` [Make vm test thingys](https://github.com/bvaughn123/mk_vm_test_thingys) 
-- [x] Need to come up with logic for choosing the pkr.hcl file...
-    `Going to move externally to segrate workflow tasks` [Make vm test thingys](https://github.com/bvaughn123/mk_vm_test_thingys) 
-- [x] Need to ensure task for vagrant install libvirt plugin is done
+- [x] Need to create a task to launch the packer build of the base vm.   
+    `Going to move externally to segrate workflow tasks` [Make vm test thingys](https://github.com/bvaughn123/mk_vm_test_thingys)  
+- [x] Need to come up with logic for choosing the pkr.hcl file...  
+    `Going to move externally to segrate workflow tasks` [Make vm test thingys](https://github.com/bvaughn123/mk_vm_test_thingys)  
+- [x] Need to ensure task for vagrant install libvirt plugin is done  
 
-## Dynamic Vagrantfile
+## Dynamic Vagrantfile  
 
-Re-use and "agnosticize" things.
+Re-use and "agnosticize" things.  
 
-- [x] template for vars to be imported from file for vagrantfile.
-- [x] Create a j2 template to generate vars for the vagrantfile
-    > config.yaml  
-- [x] Box Selection: config.vm.box = "file://boxes/libvirt-{{box_name}}" based on selection in config.yaml
+- [x] template for vars to be imported from file for vagrantfile.  
+- [x] Create a j2 template to generate vars for the vagrantfile  
+    > config.yaml   
+- [x] Box Selection: config.vm.box = "file://boxes/libvirt-{{box_name}}" based on selection in config.yaml  
 
+Below is the applicable portion of the "Agnosticized" vagrantfile.
 
-    ```
+    ```ruby
         # encoding: utf-8
         # -*- mode: ruby -*-
         # vi: set ft=ruby :
 
         require 'yaml'
 
-        # Load Dynamic Vars from config.ymaml generated file
+        # Load Dynamic Vars from config.yaml generated file
         current_dir    = File.dirname(File.expand_path(__FILE__))
         configs        = YAML.load_file("#{current_dir}/config.yaml")
         vagrant_config = configs['configs'][configs['configs']['select']]
-
+        base_name      = vagrant_config['base_box']
 
         Vagrant.configure('2') do |config|
-        base_name = vagrant_config['base_box']
           config.vm.box = "file://boxes/"+box_name
-            
+          #....other variables below.....    
     ```
 
-- [ ] Do I create a task to Halt box, package, unzip, and perform a qemu-img -c to convert to ovf?
+- [ ] Do I create a task to Halt box, package, unzip, and perform a qemu-img -c to convert to ovf?  
     **May solve the a backlog task of ovf creation, but will require a qemu-img convert task on the box.img file in the box package**     
 
-### Template Creation
+### Agnostic Vagrantfile and Templated Vars for nested vm creation  
 
-Create the Vars to be imported into the "agnosticized" vagrant file.  
-> [config.yaml.j2 ](ansible\templates\config.yaml.j2)
+1. Declare values for the vars to be imported into the "agnosticized" vagrant.   
+   These are defined in two places, but are nested. Might not sense, but thoughts that it will  
+   help potential playbook -> role conversion.  
 
-- [x] vars/vagrant_vm_vars.yaml
-      ```yaml
-        ---
+2. Use a template to create the mappings and yaml.  
+
+3.  Finally, the Select variable, will be the conditional selection criteria for what keys are parsed  
+    by the Vagrantfile when conducting actions that generate or interact with vms.  
+
+> [config.yaml.j2 ](ansible\templates\config.yaml.j2)  
+
+      ```yaml  
+        ---  
 
         # Default VM Selection
         vm_selection: "test1" 
@@ -109,47 +120,40 @@ Create the Vars to be imported into the "agnosticized" vagrant file.
           - ["rocky8","rocky8.box","2","2048","default_driver",]
           #- ["test3","base_box","cpu","memory","default_driver",]
       ```
-
-### config.yaml example
+An example output of the template creation for the config.yaml file below.  
 
 ```yaml
 ---
 configs:
-  select: 'test1'
-
-    test1:
+  select: "{{ VM_SELECTION }}"
+    
+    centos7:
       base_box: "centos7.box"
       cpu_int: 2
       memory_int: 2048
       default_driver_string: "qemu"
-    
-    test2:
-      mode: deploy
+
+    rocky8:
       base_box: "rocky8.box"
       cpu_int: 2
       memory_int: 2048
       default_driver_string: "kvm"
-      
-```
+```  
 
-### Updating the Default Vagrant Password
-
-Multiple options exist.  As this PoC is using the AWX workflow to execute; will default to utilize
-protected credentials on the AWX Controller.
-
-![AWX New Credential Type](.Resources/new_credential_type.png)
-[AWX Documentation](https://docs.ansible.com/ansible-tower/latest/html/userguide/credential_types.htmlhttps://docs.ansible.com/ansible-tower/latest/html/userguide/credential_types.html)
+![Vagrant AWX Workflow](.Resources/vagrant.png)  
 
 
-### Notes 31July
+### Updating the Default Vagrant Password  
 
-- [ ] Vagrant Custom Plugin not working, need to troubleshoot and understand the subprocess.check_call function mo betta
+Multiple options exist.  As this PoC is using the AWX workflow to execute; will default to utilize  
+protected credentials on the AWX Controller.  
 
-- [ ] Possible issue with the permission on the vagrant plugin file, need to ensure workflow task that installs libvirt is done as `"{{ REMOTE_USER }}"`.  Temp fix is `vagrant plugin expunge --reinstall`
+![AWX New Credential Type](.Resources/new_credential_type.png)  
+[AWX Documentation](https://docs.ansible.com/ansible-tower/latest/html/userguide/credential_types.htmlhttps://docs.ansible.com/ansible-tower/latest/html/userguide/credential_types.html)  
 
-- [ ] Going to attempt change via encrypted awx and `vagrant ssh -c "echo {{pass}} | passwd root --stdin`  Need to see if this will cause log entry, or if need to export to env Var and ref that.
 
-- [ ] Need to check become_user on tasks to ensure permissions are correct.
+### Notes 
 
-- [ ] Vagrantfile/j2 keys and vars.
+- [ ] Vagrant Custom Plugin not working, need to troubleshoot and understand the subprocess.check_call function mo betta  
+- [ ] Going to attempt change via encrypted awx and `vagrant ssh -c "echo {{pass}} | passwd root --stdin`  Need to see if this will cause log entry, or if need to export to env Var and ref that.  
 
