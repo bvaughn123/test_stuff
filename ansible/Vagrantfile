@@ -3,6 +3,7 @@
 # vi: set ft=ruby :
 
 require 'yaml'
+require 'vagrant/camera'
 
 # Load Dynamic Vars from Yaml File
 current_dir    = File.dirname(File.expand_path(__FILE__))

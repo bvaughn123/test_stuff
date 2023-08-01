@@ -20,6 +20,22 @@
   become: yes
   become_user: "{{ REMOTE_USER }}"
 
+- name: Check if screenshots dir exists
+  stat: 
+    path: "/home/{{ REMOTE_USER }}/screenshots"
+  register: screenshot_dir_check
+
+- name: Create Screenshot dir
+  file: 
+    path: /home/{{REMOTE_USER}}/screenshots
+    state: directory 
+  become: yes
+  become_user: "{{ REMOTE_USER }}"
+  when: screenshot_dir_check.stat.exists =! True
+
+- name: Test Screenshot
+  command: "vagrant camera {{ VM_SELECTION }}-Dev-Test-VM --save /home/{{ REMOTE_USER }}/screenshots/
+
 
 ### insert vagrant halt/repackage/destroy and custom provision tasks [todo]
 ### work out the custom module [todo]
