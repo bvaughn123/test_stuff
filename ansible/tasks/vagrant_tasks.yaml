@@ -6,6 +6,11 @@
     group: "{{ REMOTE_USER }}"
     mode: '0644'
 
+- name: Install Vagrant Camera plugin
+  command: vagrant plugin install vagrant-camera
+  become: yes
+  become_user: "{{ REMOTE_USER }}"
+
 - name: Test Vagrant up command
   shell: | 
     export VAGRANT_LOG=info
@@ -14,6 +19,7 @@
     chdir: "/home/{{REMOTE_USER}}/vagrant"
   become: yes
   become_user: "{{ REMOTE_USER }}"
+
 
 ### insert vagrant halt/repackage/destroy and custom provision tasks [todo]
 ### work out the custom module [todo]
