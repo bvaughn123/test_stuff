@@ -13,13 +13,27 @@
 
 - name: Test Vagrant up command
   shell: | 
-    vagrant plugin expunge --reinstall
     export VAGRANT_LOG=info
-    vagrant up
+    vagrant up --debug &> vagrant.log
   args:
     chdir: "/home/{{REMOTE_USER}}/vagrant"
   become: yes
   become_user: "{{ REMOTE_USER }}"
+#   delegate_to: localhost
+#   async: 30
+#   poll: 0
+#   register: update_status
+
+# - name: check Vagrant build status
+#   asynch_status:
+#     jid: "{{ update_status.ansible_job_id }}"
+#     register: check_job
+#     until: check_job.finished
+#     retries: 1000
+#     delay: 30
+
+# - debug: 
+#     var: update_status
 
 - name: Check if screenshots dir exists
   stat: 
