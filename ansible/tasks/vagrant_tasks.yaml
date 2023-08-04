@@ -32,9 +32,17 @@
 
 - name: Test Vagrant up command
   vagrant: 
-    command: up
+    command: halt
     path: "{{ VagrantFileDir }}"
-    provision: 1
+  become: yes
+  become_user: "{{ REMOTE_USER }}"
+  become_method: su
+
+- name: Test Vagrant up command
+  vagrant: 
+    command: package
+    output_box_name: test.box
+    path: "{{ VagrantFileDir }}"
   become: yes
   become_user: "{{ REMOTE_USER }}"
   become_method: su
