@@ -34,7 +34,7 @@
   vagrant: 
     command: up
     path: "{{ VagrantFileDir }}"
-    provision: true
+    provision: yes
   become: yes
   become_user: "{{ REMOTE_USER }}"
   become_method: su
