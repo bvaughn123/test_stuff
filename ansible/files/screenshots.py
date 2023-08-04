@@ -1,4 +1,5 @@
-#!/bin/bash/python
+#!/usr/bin/python
+# lel
 # https://libvirt.org/
 
 import sys
