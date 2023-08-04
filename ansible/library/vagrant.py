@@ -3,7 +3,7 @@
 from ansible.module_utils.basic import AnsibleModule
 import subprocess
 import shutil
-
+import os
 
 def init(command, path, output_box_name=None):
     try:
@@ -45,6 +45,7 @@ def run_module():
         module.exit_json(**result)
 
     try:
+        os.environ["VAGRANT_LOG"] = "1"
         if not shutil.which('vagrant'):
             module.fail_json(msg='Vagrant isnt found', **result)
 
