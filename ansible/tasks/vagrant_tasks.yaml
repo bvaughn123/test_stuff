@@ -30,4 +30,21 @@
   debug:
     var: vagrant_status
 
+- name: Test Vagrant up command
+  vagrant: 
+    command: up
+    path: "{{ VagrantFileDir }}"
+    provision: true
+  become: yes
+  become_user: "{{ REMOTE_USER }}"
+  become_method: su
+
+- name: Test Vagrant up command
+  vagrant: 
+    command: destroy
+    path: "{{ VagrantFileDir }}"
+  become: yes
+  become_user: "{{ REMOTE_USER }}"
+  become_method: su
+
 
