@@ -29,5 +29,5 @@
 - name: debug vagrant status
   debug:
     var: vagrant_status
-    verbosity: 2
+
 
