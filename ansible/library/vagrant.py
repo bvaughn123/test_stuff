@@ -8,7 +8,7 @@ import os
 
 def run_module(command, path, output_box_name=None):
     try:
-        os.environ['VAGRANT_LOG' = 'info']
+        os.environ["'VAGRANT_LOG' = 'info'"]
         vagrant_bin = shutil.which('vagrant')
         if not vagrant_bin:
             raise FileNotFoundError("Vagrant binary not found on the system.")
