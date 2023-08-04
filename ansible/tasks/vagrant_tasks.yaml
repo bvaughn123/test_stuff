@@ -14,9 +14,7 @@
 - name: Test Vagrant up command
   vagrant: 
     command: up
-    path: '.'
-  args:
-    chdir: "/home/{{REMOTE_USER}}/vagrant"
+    path: "/home/{{REMOTE_USER}}/vagrant"
   become: yes
   become_user: "{{ REMOTE_USER }}"
   delegate_to: localhost
@@ -24,9 +22,7 @@
 - name: Test Vagrant up command
   vagrant: 
     command: status
-    path: '.'
-  args:
-    chdir: "/home/{{REMOTE_USER}}/vagrant"
+    path: "/home/{{REMOTE_USER}}/vagrant"
   become: yes
   become_user: "{{ REMOTE_USER }}"
   delegate_to: localhost
