@@ -13,12 +13,14 @@
   vagrant: 
     command: up
     path: "{{ VagrantFileDir }}"
+  delegate_to: localhost 
 
 - name: Test Vagrant status command
   vagrant: 
     command: status
     path: "{{ VagrantFileDir }}"
   register: vagrant_status
+  delegate_to: localhost
 
 - name: debug vagrant status
   debug:
