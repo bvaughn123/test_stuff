@@ -1,5 +1,5 @@
 - set_fact:
-    VagrantFileDir: "/home/{{ REMOTE_USER }}/vagrant/"
+    VagrantFileDir: "/home/{{ REMOTE_USER }}/vagrant"
 
 - name: Copy Vagrant File to Boxes
   copy:
@@ -13,14 +13,18 @@
   vagrant: 
     command: up
     path: "{{ VagrantFileDir }}"
-  delegate_to: localhost 
+  become: yes
+  become_user: "{{ REMOTE_USER }}"
+  become_method: su
 
 - name: Test Vagrant status command
   vagrant: 
     command: status
     path: "{{ VagrantFileDir }}"
   register: vagrant_status
-  delegate_to: localhost
+  become: yes
+  become_user: "{{ REMOTE_USER }}"
+  become_method: su
 
 - name: debug vagrant status
   debug:
