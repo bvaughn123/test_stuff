@@ -9,13 +9,13 @@ import libvirt
 Works
 
 TODOs:
-    convert the domName var to arg.
+  - [ ]  convert the domName var to arg.
 
-    Make a custom ansible module?
+  - [ ] DP: Make a custom ansible module?
 
-    Is there one that exists?
+  - [ ] Is there one that exists?
     
-    Vagrant Camera didn't work...
+  - Vagrant Camera didn't work...
 '''
 domName = 'vagrant_Dev-Test-VM-centos7.box'
 

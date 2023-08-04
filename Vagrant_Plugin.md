@@ -10,7 +10,7 @@ Additionally, `provision` is a valid command, for the equivalent `vagrant up --p
 
 The command `package` will require the `output_box_name: name_of_box.box` (see below examples).
 
-- [ ] [todo]Review [Molecule-Vagrant](https://github.com/ansible-community/molecule-vagrant/blob/main/molecule_vagrant/modules/vagrant.py)
+- [ ] Review [Molecule-Vagrant](https://github.com/ansible-community/molecule-vagrant/blob/main/molecule_vagrant/modules/vagrant.py)
 
 Use:
 
@@ -33,8 +33,7 @@ Use:
 
 ```
 .[TODO]
-- [ ] need to add a provision key ( vagrant up --provision)
-- [ ] need to add package and key for output path
+- [x] need to add package and key for output path
 
 Should be set in the if running the libvirt vagrant packer setup vm playbook;  
 However, this assumes that `vagrant` is in PATH...Will not work if that's not

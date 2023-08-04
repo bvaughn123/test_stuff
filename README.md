@@ -35,15 +35,11 @@ Goals:
 
   [Template Readme](ansible/templates/config.yaml.example.md)  
 
-- [ ] Todo: learn stuffs, and fix the vagrant module thingy...   
-
 5. **Build Nested vm using libvirt and vagrant box**  
 
-- [ ] Todo: Add template or additonal tasks with appropriate to dynamically launch  
+- [x]  Add template or additonal tasks with appropriate to dynamically launch  
       additional tasks / playbooks with vagrant provisioner.  
     - Created marker for afterline task in vagrant file.  
-
-- [ ] Todo: Implement the encrypted source_creds, creds thing in AWX.  
 
 ## AWX Jobs  
 
@@ -163,5 +159,5 @@ Cheatsheets:
 ### Notes 
 
 
-- [ ] Going to attempt change via encrypted awx and `vagrant ssh -c "echo {{pass}} | passwd root --stdin`  Need to see if this will cause log entry, or if need to export to env Var and ref that.  
+- [ ] Attempt change via encrypted awx and `vagrant ssh -c "echo {{pass}} | passwd root --stdin`  Need to see if this will cause log entry, or if need to export to env Var and ref that.  
 

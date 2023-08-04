@@ -30,6 +30,8 @@
   debug:
     var: vagrant_status.stdout
 
+## [TODO] ADD THE PASSWORD CHANGE VAGRANT SSH -C TASK
+
 - name: Test Vagrant Halt command
   vagrant: 
     command: halt
@@ -37,6 +39,8 @@
   become: yes
   become_user: "{{ REMOTE_USER }}"
   become_method: su
+
+## [TODO] CREATE OUTPUT BOX NAME VAR AND ADD CHECK TO ENSURE IT DOESN'T EXIST
 
 - name: Build New Box from Existing VM
   vagrant: 
