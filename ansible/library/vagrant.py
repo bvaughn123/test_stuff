@@ -3,7 +3,6 @@
 from ansible.module_utils.basic import AnsibleModule
 import subprocess
 import shutil
-import os
 
 
 def init(command, path, output_box_name=None):
@@ -24,7 +23,6 @@ def init(command, path, output_box_name=None):
 
 
 def run_module():
-    # os.environ["VAGRANT_LOG = info"]
     module_args = dict(
         path=dict(type='str', required=True),
         command=dict(type='str', required=True),

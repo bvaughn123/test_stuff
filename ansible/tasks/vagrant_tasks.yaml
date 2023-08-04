@@ -1,3 +1,6 @@
+- set_fact:
+    VagrantFileDir: "/home/{{ REMOTE_USER }}/vagrant/config.yaml"
+
 - name: Copy Vagrant File to Boxes
   copy:
     src: "{{ playbook_dir}}/Vagrantfile"
@@ -6,71 +9,25 @@
     group: "{{ REMOTE_USER }}"
     mode: '0644'
 
-# - name: Install Vagrant Camera plugin
-#   command: vagrant plugin install vagrant-camera
-#   become: yes
-#   become_user: "{{ REMOTE_USER }}"
-
 - name: Test Vagrant up command
   vagrant: 
     command: up
-    path: "/home/{{REMOTE_USER}}/vagrant"
+    path: "{{ VagrantFileDir }}"
   become: yes
   become_user: "{{ REMOTE_USER }}"
-  delegate_to: localhost
+  delegate_to: localhost 
 
 - name: Test Vagrant up command
   vagrant: 
     command: status
-    path: "/home/{{REMOTE_USER}}/vagrant"
+    path: "{{ VagrantFileDir }}"
   become: yes
   become_user: "{{ REMOTE_USER }}"
-  delegate_to: localhost
+  delegate_to: localhost 
   register: vagrant_status
 
-- debug:
-    msg: vagrant_status.stdout_lines  
+- name: debug vagrant status
+  debug:
+    var: vagrant_status
+    verbosity: 2
 
-# - name: Test Vagrant up command
-#   shell: | 
-#     export VAGRANT_LOG=info
-#     vagrant up --debug &> vagrant.log
-#   args:
-#     chdir: "/home/{{REMOTE_USER}}/vagrant"
-#   become: yes
-#   become_user: "{{ REMOTE_USER }}"
-#   delegate_to: localhost
-#   async: 30
-#   poll: 0
-#   register: update_status
-
-# - name: check Vagrant build status
-#   asynch_status:
-#     jid: "{{ update_status.ansible_job_id }}"
-#     register: check_job
-#     until: check_job.finished
-#     retries: 1000
-#     delay: 30
-
-# - debug: 
-#     var: update_status.stdout_lines
-
-# - name: Check if screenshots dir exists
-#   stat: 
-#     path: "/home/{{ REMOTE_USER }}/screenshots"
-#   register: screenshot_dir_check
-
-# - name: Create Screenshot dir
-#   file: 
-#     path: /home/{{REMOTE_USER}}/screenshots
-#     state: directory 
-#   become: yes
-#   become_user: "{{ REMOTE_USER }}"
-#   when: screenshot_dir_check.stat.exists =! True
-
-# - name: Test Screenshot
-#   command: "vagrant camera {{ VM_SELECTION }}-Dev-Test-VM --save /home/{{ REMOTE_USER }}/screenshots/"
-
-
-### insert vagrant halt/repackage/destroy and custom provision tasks [todo]
-### work out the custom module [todo]

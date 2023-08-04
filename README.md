@@ -2,15 +2,18 @@
 
 Goals:
 
-1. **Make the Setup VM**  
+1. **Make the Base VM**
+  - Base VM is the VM that nested virtualization will occur on.  
   - Libvirt_packer_ansible playbook  
     [Pakr Vagr Libvirt](https://github.com/bvaughn123/Libvirt-Vagrant-Packer)  
   
-2. **Create a testing workflow** 
-  - Example below only shows stage 1 of 3.  
-  Workflow approvals required after each stage completion.  
-  Does not require starting from workflow stage 1, and proceeding workflows  
-  can be executed as long as the required files and dependencies exist.  
+2. **Create a testing workflow**, AWX Demo. 
+  - Examples below shows stages.
+  - Workflow approvals required after each stage completion (approval/disapprove).  
+  - Workflow Execution can be ran from any point if the required files and dependencies exist (Prior workflows already ran).
+    - Example uses:  
+      Creating new base boxes via kickstarts (WF2)
+      Updating the Selection VM settings Dict, the Selection Var, ect. (WF3)
     
     [Pakr Vagr Libvirt](https://github.com/bvaughn123/Libvirt-Vagrant-Packer)  
     
@@ -92,9 +95,6 @@ Below is the applicable portion of the "Agnosticized" vagrantfile.
           #....other variables below.....    
     ```
 
-- [ ] Do I create a task to Halt box, package, unzip, and perform a qemu-img -c to convert to ovf?  
-    **May solve the a backlog task of ovf creation, but will require a qemu-img convert task on the box.img file in the box package**     
-
 ### Agnostic Vagrantfile and Templated Vars for nested vm creation  
 
 1. Declare values for the vars to be imported into the "agnosticized" vagrant.   
@@ -102,6 +102,7 @@ Below is the applicable portion of the "Agnosticized" vagrantfile.
    help potential playbook -> role conversion.  
 
 2. Use a template to create the mappings and yaml.  
+> [config.yaml.j2 ](ansible\templates\config.yaml.j2)  
 
 3.  Finally, the Select variable, will be the conditional selection criteria for what keys are parsed  
     by the Vagrantfile when conducting actions that generate or interact with vms.  
@@ -149,11 +150,18 @@ Multiple options exist.  As this PoC is using the AWX workflow to execute; will 
 protected credentials on the AWX Controller.  
 
 ![AWX New Credential Type](.Resources/new_credential_type.png)  
-[AWX Documentation](https://docs.ansible.com/ansible-tower/latest/html/userguide/credential_types.htmlhttps://docs.ansible.com/ansible-tower/latest/html/userguide/credential_types.html)  
+
+[AWX Documentation](https://docs.ansible.com/ansible-tower/latest/html/userguide/credential_types.htmlhttps://docs.ansible.com/ansible-tower/latest/html/userguide/credential_types.html) / Ansible Tower Official Docs.
+
+### Virtsh and Virtualization tools CLI Cheatsheet for troubleshooting
+
+Cheatsheets:
+- [Virtsh Cheatsheet](.Resources/virtcheatsheat.md)
+- [Qemu Cheatsheet](.Resources/qemucheatsheet.md)
 
 
 ### Notes 
 
-- [ ] Vagrant Custom Plugin not working, need to troubleshoot and understand the subprocess.check_call function mo betta  
+
 - [ ] Going to attempt change via encrypted awx and `vagrant ssh -c "echo {{pass}} | passwd root --stdin`  Need to see if this will cause log entry, or if need to export to env Var and ref that.  
 
