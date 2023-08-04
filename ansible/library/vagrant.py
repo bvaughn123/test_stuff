@@ -6,7 +6,7 @@ import shutil
 import os
 
 
-def run_module(command, path, output_box_name=None):
+def init(command, path, output_box_name=None):
     try:
         os.environ["'VAGRANT_LOG' = 'info'"]
         vagrant_bin = shutil.which('vagrant')
@@ -53,7 +53,7 @@ def run_module():
             if not module.params['output_box_name']:
                 module.fail_json(msg='output_box_name is required for package command.', **result)
 
-        if run_module(module.params['command'], module.params['path'], module.params['output_box_name']):
+        if init(module.params['command'], module.params['path'], module.params['output_box_name']):
             result['changed'] = True
             result['message'] = 'Vagrant {} executed successfully'.format(module.params['command'])
         else:
