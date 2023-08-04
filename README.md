@@ -41,6 +41,9 @@ Goals:
       additional tasks / playbooks with vagrant provisioner.  
     - Created marker for afterline task in vagrant file.  
 
+- [x] Implement Custom Vagrant Ansible Module for running vagrant commands  
+     [Vagrant Custom Plugin Readme](.Resources/Vagrant_Plugin.md)
+
 ## AWX Jobs  
 
 Using AWX Workflow templates to synch repositories, launch jobs, and kick off Next Stage Workflows.  
