@@ -51,7 +51,7 @@
   become_user: "{{ REMOTE_USER }}"
   become_method: su
 
-- name: Test Vagrant Destroy command
+- name: Test Vagrant Resume command
   vagrant: 
     command: resume
     path: "{{ VagrantFileDir }}"
@@ -59,12 +59,19 @@
   become_user: "{{ REMOTE_USER }}"
   become_method: su
 
-- name: Test Vagrant Destroy command
-  vagrant: 
-    command: destroy
-    path: "{{ VagrantFileDir }}"
+# ## [TODO] Update to account for confirmation 
+# - name: Test Vagrant Destroy command
+#   vagrant: 
+#     command: destroy
+#     path: "{{ VagrantFileDir }}"
+#   become: yes
+#   become_user: "{{ REMOTE_USER }}"
+#   become_method: su
+
+- name: command Vagrant Destroy
+  command: 'echo 'y' | vagrant destroy'
+  args:
+    chdir: "/home/{{ REMOTE_USER }}/vagrant/Vagrantfile"
   become: yes
   become_user: "{{ REMOTE_USER }}"
   become_method: su
-
-
