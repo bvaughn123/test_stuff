@@ -30,7 +30,7 @@
   debug:
     var: vagrant_status
 
-- name: Test Vagrant up command
+- name: Test Vagrant Halt command
   vagrant: 
     command: halt
     path: "{{ VagrantFileDir }}"
@@ -38,7 +38,7 @@
   become_user: "{{ REMOTE_USER }}"
   become_method: su
 
-- name: Test Vagrant up command
+- name: Build New Box from Existing VM
   vagrant: 
     command: package
     output_box_name: test.box
@@ -47,7 +47,7 @@
   become_user: "{{ REMOTE_USER }}"
   become_method: su
 
-- name: Test Vagrant up command
+- name: Test Vagrant Destroy command
   vagrant: 
     command: destroy
     path: "{{ VagrantFileDir }}"
