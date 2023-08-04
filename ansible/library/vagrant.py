@@ -24,7 +24,7 @@ def init(command, path, output_box_name=None):
 
 
 def run_module():
-    os.environ["VAGRANT_LOG = info"]
+    # os.environ["VAGRANT_LOG = info"]
     module_args = dict(
         path=dict(type='str', required=True),
         command=dict(type='str', required=True),
