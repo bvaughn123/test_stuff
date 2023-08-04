@@ -53,23 +53,23 @@
 #     delay: 30
 
 # - debug: 
-#     var: update_status
+#     var: update_status.stdout_lines
 
-- name: Check if screenshots dir exists
-  stat: 
-    path: "/home/{{ REMOTE_USER }}/screenshots"
-  register: screenshot_dir_check
+# - name: Check if screenshots dir exists
+#   stat: 
+#     path: "/home/{{ REMOTE_USER }}/screenshots"
+#   register: screenshot_dir_check
 
-- name: Create Screenshot dir
-  file: 
-    path: /home/{{REMOTE_USER}}/screenshots
-    state: directory 
-  become: yes
-  become_user: "{{ REMOTE_USER }}"
-  when: screenshot_dir_check.stat.exists =! True
+# - name: Create Screenshot dir
+#   file: 
+#     path: /home/{{REMOTE_USER}}/screenshots
+#     state: directory 
+#   become: yes
+#   become_user: "{{ REMOTE_USER }}"
+#   when: screenshot_dir_check.stat.exists =! True
 
-- name: Test Screenshot
-  command: "vagrant camera {{ VM_SELECTION }}-Dev-Test-VM --save /home/{{ REMOTE_USER }}/screenshots/"
+# - name: Test Screenshot
+#   command: "vagrant camera {{ VM_SELECTION }}-Dev-Test-VM --save /home/{{ REMOTE_USER }}/screenshots/"
 
 
 ### insert vagrant halt/repackage/destroy and custom provision tasks [todo]
