@@ -6,19 +6,39 @@
     group: "{{ REMOTE_USER }}"
     mode: '0644'
 
-- name: Install Vagrant Camera plugin
-  command: vagrant plugin install vagrant-camera
-  become: yes
-  become_user: "{{ REMOTE_USER }}"
+# - name: Install Vagrant Camera plugin
+#   command: vagrant plugin install vagrant-camera
+#   become: yes
+#   become_user: "{{ REMOTE_USER }}"
 
 - name: Test Vagrant up command
-  shell: | 
-    export VAGRANT_LOG=info
-    vagrant up --debug &> vagrant.log
+  vagrant: up
   args:
     chdir: "/home/{{REMOTE_USER}}/vagrant"
   become: yes
   become_user: "{{ REMOTE_USER }}"
+  delegate_to: localhost
+
+- name: Test Vagrant up command
+  vagrant: status
+  args:
+    chdir: "/home/{{REMOTE_USER}}/vagrant"
+  become: yes
+  become_user: "{{ REMOTE_USER }}"
+  delegate_to: localhost
+  register: vagrant_status
+
+- debug:
+    msg: vagrant_status.stdout_lines  
+
+# - name: Test Vagrant up command
+#   shell: | 
+#     export VAGRANT_LOG=info
+#     vagrant up --debug &> vagrant.log
+#   args:
+#     chdir: "/home/{{REMOTE_USER}}/vagrant"
+#   become: yes
+#   become_user: "{{ REMOTE_USER }}"
 #   delegate_to: localhost
 #   async: 30
 #   poll: 0
