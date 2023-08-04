@@ -1,5 +1,5 @@
 - set_fact:
-    VagrantFileDir: "/home/{{ REMOTE_USER }}/vagrant/config.yaml"
+    VagrantFileDir: "/home/{{ REMOTE_USER }}/vagrant/"
 
 - name: Copy Vagrant File to Boxes
   copy:
