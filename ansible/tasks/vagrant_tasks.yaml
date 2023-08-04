@@ -28,7 +28,7 @@
 
 - name: debug vagrant status
   debug:
-    var: vagrant_status
+    var: vagrant_status.stdout_lines
 
 - name: Test Vagrant Halt command
   vagrant: 
