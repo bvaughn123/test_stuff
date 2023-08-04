@@ -45,7 +45,7 @@ def run_module():
         module.exit_json(**result)
 
     try:
-        os.environ["VAGRANT_LOG"] = "1"
+        os.environ["VAGRANT_LOG"] = "info"
         if not shutil.which('vagrant'):
             module.fail_json(msg='Vagrant isnt found', **result)
 
