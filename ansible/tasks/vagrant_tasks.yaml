@@ -12,7 +12,8 @@
 #   become_user: "{{ REMOTE_USER }}"
 
 - name: Test Vagrant up command
-  vagrant: up
+  vagrant: 
+    command: up
   args:
     chdir: "/home/{{REMOTE_USER}}/vagrant"
   become: yes
@@ -20,7 +21,8 @@
   delegate_to: localhost
 
 - name: Test Vagrant up command
-  vagrant: status
+  vagrant: 
+    command: status
   args:
     chdir: "/home/{{REMOTE_USER}}/vagrant"
   become: yes
