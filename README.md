@@ -6,7 +6,7 @@
 3.  Utilizing ST stig kickstart files is possible but not implemented.  Changes  **still needing** implementation are the partitioning and disk allocation during the installation.
 4.  Utilization of the nested virtualization via libvirt and vagrant may not be practical for utilizing a builder / ESXi Provider.
 5.  An additional parameter needs to be accounted for in the custom vagrant ansible file to account for the confirmation to destroy a built vm.
-6.  The Screenshot python progam works and can be used to provide a "proof.txt" style of confirmation of task execution.
+6.  [ **Screenshot.py** ](ansible/files/screenshots.py) works and can be used to provide a "proof.txt" style of confirmation of task execution.
   - There may already be a functional vagrant plugin already that meets the intent. (Vagrant-camera did not work)
   - If a working plugin exists...implementation via an ansible shell/command task is feasible.  
   - If a working vagrant plugin does not exist; conversion of the python script to an ansible module is a viable course   - At this time, not a priority to implement; no real use case being forecasted.
