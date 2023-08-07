@@ -142,7 +142,7 @@ Below is the applicable portion of the "Agnosticized" vagrantfile.
       ```
 #### Example Output
 
-[Example](ansible/templates/config.yaml.example.md)  
+[Example](ansible\templates\config.yaml.example.md)  
 
 The outputted file and further development thoughts exist at the link above.
 
