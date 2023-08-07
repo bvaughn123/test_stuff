@@ -1,6 +1,22 @@
 # Test Stuff
 
-Goals:
+## Notes: 
+1.  The PoC is functional.  
+2.  Implementation with AWX can be achieved via any workflow, pipeline, ect.
+3.  Utilizing ST stig kickstart files is possible but not implemented.  Changes  **still needing** implementation are the partitioning and disk allocation during the installation.
+4.  Utilization of the nested virtualization via libvirt and vagrant may not be practical for utilizing a builder / ESXi Provider.
+5.  An additional parameter needs to be accounted for in the custom vagrant ansible file to account for the confirmation to destroy a built vm.
+6.  The Screenshot python progam works and can be used to provide a "proof.txt" style of confirmation of task execution.
+  - There may already be a functional vagrant plugin already that meets the intent. (Vagrant-camera did not work)
+  - If a working plugin exists...implementation via an ansible shell/command task is feasible.  
+  - If a working vagrant plugin does not exist; conversion of the python script to an ansible module is a viable course   - At this time, not a priority to implement; no real use case being forecasted.
+
+### Summary:
+
+PoC is functional and can provide a quick adhoc testing environment.  
+However, use case for implementation for a business need is not apparent at this time.
+
+### Goals:
 
 1. **Make the Base VM**
   - Base VM is the VM that nested virtualization will occur on.  
@@ -110,9 +126,8 @@ Below is the applicable portion of the "Agnosticized" vagrantfile.
 
       ```yaml  
         ---  
-
         # Default VM Selection
-        vm_selection: "test1" 
+        vm_selection: "Centos7" 
         
         # Name, box_name.box, cpus, memory, driver 
         VARS_VAGRANT_SYSTEM_SETTINGS:
@@ -120,25 +135,19 @@ Below is the applicable portion of the "Agnosticized" vagrantfile.
           - ["rocky8","rocky8.box","2","2048","default_driver",]
           #- ["test3","base_box","cpu","memory","default_driver",]
       ```
-An example output of the template creation for the config.yaml file below.  
+#### Example Output
 
-```yaml
----
-configs:
-  select: "{{ VM_SELECTION }}"
-    
-    centos7:
-      base_box: "centos7.box"
-      cpu_int: 2
-      memory_int: 2048
-      default_driver_string: "qemu"
+[Example](test_stuff/ansible/templates/config.yaml.example.md)  
 
-    rocky8:
-      base_box: "rocky8.box"
-      cpu_int: 2
-      memory_int: 2048
-      default_driver_string: "kvm"
-```  
+The outputted file and further development thoughts exist at the link above.
+
+Though this is a PoC, and there would need to be extension of functionality.  
+It should be pretty simple to implement with a few conditional tasks.
+
+Also, expansion for quick dev environments could be optimized by including flavor based 
+inputs, similiar to the AMI flavors listed.
+
+
 
 ![Vagrant AWX Workflow](.Resources/vagrant.png)  
 
@@ -161,6 +170,11 @@ Cheatsheets:
 
 ### Notes 
 
+- [ ] With the custom vagrant module: vagrant destroy needs an additional param, to account for confirmation.
+      - [ **Simple vagrant commands** ](ansible/library/vagrant.py)
 
-- [ ] Attempt change via encrypted awx and `vagrant ssh -c "echo {{pass}} | passwd root --stdin`  Need to see if this will cause log entry, or if need to export to env Var and ref that.  
+- [ ] Attempt change via encrypted awx and `vagrant ssh -c "echo {{pass}} | passwd root --stdin`  Need to see if this will cause log entry, or if needing to export to an env Var and reference the env var within the task. 
+  - Similiar to sourcing a clouds.yaml or clouds.rc file.
+
+
 
