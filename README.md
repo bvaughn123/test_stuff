@@ -122,12 +122,12 @@ Below is the applicable portion of the "Agnosticized" vagrantfile.
    help potential playbook -> role conversion.  
 
 2. Use a template to create the mappings and yaml.  
-> [config.yaml.j2 ](ansible\templates\config.yaml.j2)  
+> [config.yaml.j2 ](ansible/templates/config.yaml.j2)  
 
 3.  Finally, the Select variable, will be the conditional selection criteria for what keys are parsed  
     by the Vagrantfile when conducting actions that generate or interact with vms.  
 
-> [config.yaml.j2 ](ansible\templates\config.yaml.j2)  
+> [config.yaml.j2 ](ansible/templates/config.yaml.j2)  
 
       ```yaml  
         ---  
@@ -142,7 +142,7 @@ Below is the applicable portion of the "Agnosticized" vagrantfile.
       ```
 #### Example Output
 
-[Example](ansible\templates\config.yaml.example.md)  
+[Example](ansible/templates/config.yaml.example.md)  
 
 The outputted file and further development thoughts exist at the link above.
 
