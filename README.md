@@ -2,7 +2,7 @@
 
 ## Notes: 
 1.  The PoC is functional.  
-2.  Implementation with AWX can be achieved via any workflow, pipeline, ect.
+2.  The workflow implemented via AWX can be achieved via any workflow, pipeline, ect.
 3.  Utilizing ST stig kickstart files is possible but not implemented.  Changes  **still needing** implementation are the partitioning and disk allocation during the installation.
 4.  Utilization of the nested virtualization via libvirt and vagrant may not be practical for utilizing a builder / ESXi Provider.
 5.  An additional parameter needs to be accounted for in the custom vagrant ansible file to account for the confirmation to destroy a built vm.
