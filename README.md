@@ -28,9 +28,9 @@ However, use case for implementation for a business need is not apparent at this
     [Pakr Vagr Libvirt](https://github.com/bvaughn123/Libvirt-Vagrant-Packer)  
   
 2. **Create a testing workflow**, AWX Demo. 
-  - Examples below shows stages.
-  - Workflow approvals required after each stage completion (approval/disapprove).  
-  - Workflow Execution can be ran from any point if the required files and dependencies exist (Prior workflows already ran).
+    - Examples below shows stages.
+    - Workflow approvals required after each stage completion (approval/disapprove).  
+    - Workflow Execution can be ran from any point if the required files and dependencies exist (Prior workflows already ran).
     - Example uses:  
       Creating new base boxes via kickstarts (WF2)
       Updating the Selection VM settings Dict, the Selection Var, ect. (WF3)

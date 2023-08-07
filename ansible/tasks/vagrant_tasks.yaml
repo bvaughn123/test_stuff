@@ -68,10 +68,10 @@
 #   become_user: "{{ REMOTE_USER }}"
 #   become_method: su
 
-# - name: command module Vagrant Destroy
-#   command: 'echo "y" | vagrant destroy'
-#   args:
-#     chdir: "/home/{{ REMOTE_USER }}/vagrant/Vagrantfile"
-#   become: yes
-#   become_user: "{{ REMOTE_USER }}"
-#   become_method: su
+- name: command module Vagrant Destroy
+  command: 'echo "y" | vagrant destroy'
+  args:
+    chdir: "/home/{{ REMOTE_USER }}/vagrant/"
+  become: yes
+  become_user: "{{ REMOTE_USER }}"
+  become_method: su
