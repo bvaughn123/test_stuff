@@ -19,7 +19,6 @@
 PoC is functional and can provide a quick adhoc testing environment.  
 However, use case for implementation for a business need is not apparent at this time.
 
-
 ### Goals:
 
 1. **Make the Base VM**
