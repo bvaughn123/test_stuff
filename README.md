@@ -1,14 +1,15 @@
 # Test Stuff
 
 ## Notes: 
-1. The PoC is functional.  
+1. The PoC is functional, with some caveats. 
 1. The workflow implemented via AWX can be achieved via any workflow, pipeline, ect.
 1. The Initial Configuration of the base vm to host nested vms is for a rhel distro.
     - [Initial VM Host Staging Repo.](https://github.com/bvaughn123/Libvirt-Vagrant-Packer)
 1. The rdp, and desktop setup was useful to troubleshoot any kickstarts that did not deploy correctly during the second stage, [Packer build Stage](https://github.com/bvaughn123/mk_vm_test_thingys). (vnc into the nested vm to see where it was hung.)
 1. Utilizing ST stig kickstart files is possible but not implemented.  Changes  **still needing** implementation are the partitioning and disk allocation during the installation.
-1. Utilization of the nested virtualization in the [test and build](https://github.com/bvaughn123/test_stuff) via libvirt and vagrant may not be practical for utilizing a builder / ESXi Provider, but ***may*** be useful for doing quick dev stuff.
-1. An additional parameter needs to be accounted for in the custom vagrant ansible file to account for the confirmation to destroy a built vm.
+1. For testing the ISO was staged on the VM manually.
+1. Utilization of the nested virtualization in the [test and build](https://github.com/bvaughn123/test_stuff) uses libvirt and **not** ESXi Builder or Provider, ***may*** be useful for doing quick dev stuff.
+1. An additional parameter needs to be accounted for in the custom vagrant ansible file to account for the confirmation to destroy a built vm.  Currently passing in a 'echo "y" | vagrant destroy', however likely a switch to quiet prompt.
 1. [ **Screenshot.py** ](ansible/files/screenshots.py) works and can be used to provide a "proof.txt" style of confirmation of task execution.
   - There may already be a functional vagrant plugin already that meets the intent. (Vagrant-camera did not work)
   - If a working plugin exists...implementation via an ansible shell/command task is feasible.  
